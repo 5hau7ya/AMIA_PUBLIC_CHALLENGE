@@ -12,15 +12,15 @@ Medical imaging datasets present unique challenges, primarily extreme class imba
 * Stratification: Splitting involved an 85/15 train/val split. Images with "No Finding" (Class 14) were deliberately filtered during bounding box calculation to prevent the model from suppressing rare abnormality predictions.
 
   2. Model Training
-* Architecture: Fine-tuned `YOLO26l` initialized with pre-trained weights.
-* Optimization: Utilized multi-GPU training (`device=[0,1]`) using Automatic Mixed Precision (AMP) to maintain memory efficiency at a `640x640` input size.
+* Architecture: Fine-tuned YOLO26l initialized with pre-trained weights.
+* Optimization: Utilized multi-GPU training (device=[0,1]) using Automatic Mixed Precision (AMP) to maintain memory efficiency at a 640x640 input size.
 * Early Stopping: Monitored validation mAP@50-95. Training was halted at epoch 125 (patience=15) to prevent over-fitting, utilizing the weights from epoch 110.
 
 # Results & Evaluation
 The primary evaluation metric was PASCAL VOC mAP at an Intersection over Union (IoU) > 0.4.
 
-* Validation mAP50: `0.304`
-* Validation mAP50-95: `0.166`
+* Validation mAP50: 0.304
+* Validation mAP50-95: 0.166
 * Inference Speed: ~8.1ms per image (Tesla T4)
 
 # Failure Analysis & Future Work
